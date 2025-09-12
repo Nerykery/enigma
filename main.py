@@ -6,11 +6,14 @@ from PySide6.QtWidgets import QTableWidgetItem, QHeaderView, QApplication, QMain
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QColor, QFont, QIcon
 from datetime import datetime
+import pymysql
+import time
+
 # site = "127.0.0.1"
-with open('site.txt', 'r') as f:
-    site = f.read().strip()
+# with open('site.txt', 'r') as f:
+#     site = f.read().strip()
 
-
+#from . resources_rc import * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 from modules import *
 from widgets import *
@@ -18,29 +21,37 @@ os.environ["QT_FONT_DPI"] = "96"
 
 
 
+
+def get_connection():
+    return pymysql.connect(
+        host="94.156.115.39",
+        user="nerykery",
+        password="N3ryK3ry_Strong_P@ss",   #!!!!
+        database="enigma",
+        charset="utf8mb4",
+        cursorclass=pymysql.cursors.DictCursor
+    )
+
+
+
+
 widgets = None
 class Logger:
     def __init__(self, user_login):
         self.user_login = user_login
-        self.site = site
 
     def log_action(self, action, target):
         try:
-            log_entry = {
-                "user": self.user_login,
-                "interact": action,
-                "target": target,
-                "data": datetime.now().strftime('%d.%m.%Y %H:%M:%S')  
-            }
-            
-            requests.post(
-                f"http://{self.site}/dsa/hs/api/createlogs",
-                json=[log_entry],
-                headers={'Content-Type': 'application/json'},
-                timeout=3
-            )
+            conn = get_connection()
+            with conn.cursor() as cur:
+                cur.execute("""INSERT INTO logs (user, interact, target, data)
+                            VALUES (%s, %s, %s, NOW())""",
+                            (self.user_login, action, target))
+                conn.commit()
+            conn.close()
         except Exception as e:
             print(f"Ошибка записи лога: {str(e)}")
+
         
 class AuthWindow(QDialog):
     def __init__(self, parent=None):
@@ -78,31 +89,27 @@ class AuthWindow(QDialog):
     def authenticate(self):
         login = self.edit_login.text().strip()
         password = self.edit_password.text().strip()
-        
+
         if not login or not password:
             QMessageBox.warning(self, "Ошибка", "Введите логин и пароль")
             return
-        
+
         try:
-            response = requests.get(f"http://{site}/dsa/hs/api/auth/{login}")
-            if response.status_code == 200:
-                users = response.json()
-                if users and isinstance(users, list) and len(users) > 0:
-                    user = users[0]
-                    if user.get('password') == password and user.get('login'):
-                        self.user_data = {
-                            'login': user.get('login'),
-                            'role': user.get('role')
-                        }
-                        self.accept()
-                    else:
-                        QMessageBox.warning(self, "Ошибка", "Неверный пароль или доступ запрещен")
-                else:
-                    QMessageBox.warning(self, "Ошибка", "Пользователь не найден")
+            conn = get_connection()
+            with conn.cursor() as cur:
+                cur.execute("SELECT * FROM users WHERE login=%s", (login,))
+                user = cur.fetchone()
+            conn.close()
+
+            if user and user["password"] == password:
+                self.user_data = {"login": user["login"], "role": user["role"]}
+                self.accept()
             else:
-                QMessageBox.warning(self, "Ошибка", "Ошибка сервера")
+                QMessageBox.warning(self, "Ошибка", "Неверный логин или пароль")
+
         except Exception as e:
-            QMessageBox.critical(self, "Ошибка", f"Ошибка подключения: {str(e)}")
+            QMessageBox.critical(self, "Ошибка", f"Ошибка подключения к БД: {str(e)}")
+
     
 class MainWindow(QMainWindow):
     def __init__(self, user_data=None):
@@ -157,7 +164,7 @@ class MainWindow(QMainWindow):
         self.init_ui()
         self.logger = Logger(self.user_data.get('login', 'unknown'))
         self.setupLogsTable()
-        widgets.btn_logs.clicked.connect(self.loadLogsData)
+        # widgets.btn_logs.clicked.connect(self.loadLogsData)
 
         self.loadComboBoxData()
         self.setupCreateEquipment()
@@ -278,67 +285,53 @@ class MainWindow(QMainWindow):
 
     def loadData(self):
         try:
-            
-            equipment_response = requests.get(f"http://{site}/dsa/hs/api/equipment")
-            equipment_data = equipment_response.json()
-            
-            
-            
-            curators_response = requests.get(f"http://{site}/dsa/hs/api/curators")
-            curators_data = curators_response.json()
-            
-            
-            curators_dict = {}
-            for curator in curators_data:
-                full_name = f"{curator['fam']} {curator['name']} {curator['father']}"
-                curators_dict[full_name] = curator['phonenumber']
-            
-            
+            conn = get_connection()
+            with conn.cursor() as cur:
+                cur.execute("SELECT * FROM equipment")
+                equipment_data = cur.fetchall()
+                cur.execute("SELECT * FROM curators")
+                curators_data = cur.fetchall()
+            conn.close()
+
+            curators_dict = {
+                f"{c['fam']} {c['name']} {c['father']}": c['phonenumber']
+                for c in curators_data
+            }
+
             self.model.removeRows(0, self.model.rowCount())
-            
-            
-            for i, item in enumerate(equipment_data):
-                phone = curators_dict.get(item['curator'], 'Не указан')
-                
-                
+            for item in equipment_data:
+                phone = curators_dict.get(item["curator"], "Не указан")
                 row_items = [
-                    QStandardItem(item['id']),  
-                    QStandardItem(item['name']),  
-                    QStandardItem(item['type']),  
-                    QStandardItem(item['room']),  
-                    QStandardItem(item['sost']),  
-                    QStandardItem(item['curator']),  
-                    QStandardItem(phone)  
+                    QStandardItem(item["id"]),
+                    QStandardItem(item["name"]),
+                    QStandardItem(item["type"]),
+                    QStandardItem(item["room"]),
+                    QStandardItem(item["sost"]),
+                    QStandardItem(item["curator"]),
+                    QStandardItem(phone)
                 ]
-                
-                
-                for item in row_items:
-                    item.setTextAlignment(Qt.AlignCenter)
-                    item.setEditable(False)
-                
-                
+                for it in row_items:
+                    it.setTextAlignment(Qt.AlignCenter)
+                    it.setEditable(False)
+
                 if row_items[4].text() == "Работает":
-                    row_items[4].setForeground(QColor(0, 128, 0))  
+                    row_items[4].setForeground(QColor(0, 128, 0))
                 elif row_items[4].text() == "На складе":
-                    row_items[4].setForeground(QColor(255, 140, 0))  
+                    row_items[4].setForeground(QColor(255, 140, 0))
                 elif row_items[4].text() == "Сломан":
-                    row_items[4].setForeground(QColor(178, 34, 34))  
-                
-                
+                    row_items[4].setForeground(QColor(178, 34, 34))
+
                 self.model.appendRow(row_items)
-            
-            
+
             widgets.invent_table.resizeRowsToContents()
-            
             self.loadFilterComboBox()
             widgets.invent_search.clear()
             for row in range(self.model.rowCount()):
                 widgets.invent_table.setRowHidden(row, False)
-        
 
-            
         except Exception as e:
             print(f"Ошибка при загрузке данных: {e}")
+
 
     def createTableItem(self, text):
         item = QTableWidgetItem(text)
@@ -359,6 +352,7 @@ class MainWindow(QMainWindow):
             widgets.stackedWidget.setCurrentWidget(widgets.home)
             UIFunctions.resetStyle(self, btnName)
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
+            QTimer.singleShot(1, self.loadData)
 
         
         if btnName == "btn_widgets":
@@ -377,13 +371,18 @@ class MainWindow(QMainWindow):
             UIFunctions.resetStyle(self, btnName) 
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet())) 
 
+            QTimer.singleShot(1, self.loadLogsData)
+
+
+
         if btnName == "btn_save":
             print("Save BTN clicked!")
         
         if btnName == "btn_add_user":
             widgets.stackedWidget.setCurrentWidget(widgets.adduser_page) 
             UIFunctions.resetStyle(self, btnName) 
-            btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet())) 
+            btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
+            QTimer.singleShot(10, self.loadUserData)
         
         if btnName == "invent_create_button":
             self.createEquipment()
@@ -412,42 +411,39 @@ class MainWindow(QMainWindow):
 
     def loadComboBoxData(self):
         try:
-            
-            equipment_response = requests.get(f"http://{site}/dsa/hs/api/equipment")
-            equipment_data = equipment_response.json()
-            
-            
-            curators_response = requests.get(f"http://{site}/dsa/hs/api/curators")
-            curators_data = curators_response.json()
-            
-            
-            types = set()
-            rooms = set()
-            for item in equipment_data:
-                types.add(item['type'])
-                rooms.add(item['room'])
-            
-            
+            conn = get_connection()
+            with conn.cursor() as cur:
+                # Загружаем оборудование (для типов и помещений)
+                cur.execute("SELECT type, room FROM equipment")
+                equipment_data = cur.fetchall()
+
+                # Загружаем кураторов
+                cur.execute("SELECT fam, name, father FROM curators")
+                curators_data = cur.fetchall()
+            conn.close()
+
+            # --- Типы оборудования ---
+            types = {item["type"] for item in equipment_data if item["type"]}
             widgets.invent_create_type.clear()
             widgets.invent_create_type.addItem("Тип")
-
             for item_type in sorted(types):
                 widgets.invent_create_type.addItem(item_type)
 
-            
-            
+            # --- Помещения ---
+            rooms = {item["room"] for item in equipment_data if item["room"]}
             widgets.invent_create_room.clear()
             widgets.invent_create_room.addItem("Помещение")
             for room in sorted(rooms):
                 widgets.invent_create_room.addItem(room)
-            
-            
+
+            # --- Кураторы ---
             widgets.invent_create_curator.clear()
             widgets.invent_create_curator.addItem("Ответственный")
+            widgets.invent_create_curator.addItem("Добавить")
             for curator in curators_data:
-                full_name = f"{curator['fam']} {curator['name']} {curator['father']}"
+                full_name = f"{curator['fam']} {curator['name']} {curator['father'] or ''}".strip()
                 widgets.invent_create_curator.addItem(full_name)
-                
+
         except Exception as e:
             print(f"Ошибка при загрузке данных для комбобоксов: {e}")
 
@@ -474,54 +470,45 @@ class MainWindow(QMainWindow):
     def createEquipment(self):
         try:
             inventory_id = widgets.invent_create_id.text()
-            
-            if not self.isInventoryIdUnique(inventory_id):
-                QMessageBox.warning(self, "Ошибка", 
-                                f"Инвентарный номер '{inventory_id}' уже существует!")
+
+            conn = get_connection()
+            with conn.cursor() as cur:
+                cur.execute("SELECT COUNT(*) as cnt FROM equipment WHERE id=%s", (inventory_id,))
+                exists = cur.fetchone()["cnt"] > 0
+
+            if exists:
+                QMessageBox.warning(self, "Ошибка", f"Инвентарный номер '{inventory_id}' уже существует!")
                 return
 
-            data = [{
-                "id": inventory_id,
-                "name": widgets.invent_create_name.text(),
-                "type": widgets.invent_create_type.currentText(),
-                "room": widgets.invent_create_room.currentText(),
-                "curator": widgets.invent_create_curator.currentText(),
-                "sost": widgets.invent_create_sost.currentText()
-            }]
-
-            
-            if not data[0]['name']:
-                QMessageBox.warning(self, "Ошибка", "Не указано название оборудования!")
-                return
-            if data[0]['type'] == "Тип":
-                QMessageBox.warning(self, "Ошибка", "Не выбран тип оборудования!")
-                return
-            if data[0]['room'] == "Помещение":
-                QMessageBox.warning(self, "Ошибка", "Не указано помещение!")
-                return
-
-            response = requests.post(
-                f"http://{site}/dsa/hs/api/createequip",
-                json=data,
-                headers={'Content-Type': 'application/json'}
+            data = (
+                inventory_id,
+                widgets.invent_create_name.text(),
+                widgets.invent_create_type.currentText(),
+                widgets.invent_create_room.currentText(),
+                widgets.invent_create_curator.currentText(),
+                widgets.invent_create_sost.currentText()
             )
 
-            if response.status_code == 200:
-                self.logger.log_action(
-                    action="Создание оборудования",
-                    target=f"Инв. № {inventory_id}"  
-                )
-                QMessageBox.information(self, "Успех", "Оборудование успешно добавлено!")
-                self.clearCreateForm()
-                self.loadData()
-                widgets.invent_create_id.setText(self.generateInventoryId())
-            else:
-                QMessageBox.critical(self, "Ошибка", 
-                                f"Ошибка при добавлении: {response.text}")
+            if not data[1]:
+                QMessageBox.warning(self, "Ошибка", "Не указано название оборудования!")
+                return
+
+            conn = get_connection()
+            with conn.cursor() as cur:
+                cur.execute("""INSERT INTO equipment (id, name, type, room, curator, sost)
+                            VALUES (%s, %s, %s, %s, %s, %s)""", data)
+                conn.commit()
+            conn.close()
+
+            self.logger.log_action("Создание оборудования", f"Инв. № {inventory_id}")
+            QMessageBox.information(self, "Успех", "Оборудование успешно добавлено!")
+            self.clearCreateForm()
+            self.loadData()
+            widgets.invent_create_id.setText(self.generateInventoryId())
 
         except Exception as e:
-            QMessageBox.critical(self, "Ошибка", 
-                            f"Ошибка при отправке данных: {str(e)}")
+            QMessageBox.critical(self, "Ошибка", f"Ошибка при добавлении оборудования: {str(e)}")
+
             
     def isInventoryIdUnique(self, inventory_id):
             """Проверяет уникальность инвентарного номера"""
@@ -554,7 +541,7 @@ class MainWindow(QMainWindow):
             if selected_row < 0:
                 QMessageBox.warning(self, "Ошибка", "Не выбрана строка для удаления!")
                 return
-            
+
             item_id = self.model.item(selected_row, 0).text()
             item_name = self.model.item(selected_row, 1).text()
 
@@ -567,26 +554,24 @@ class MainWindow(QMainWindow):
             msg_box.button(QMessageBox.StandardButton.No).setText('Нет')
             msg_box.setDefaultButton(QMessageBox.StandardButton.No)
             reply = msg_box.exec()
-            
+
             if reply == QMessageBox.Yes:
-                response = requests.get(f"http://{site}/dsa/hs/api/delequip/{item_id}")
-                
-                if response.status_code == 200:
-                    self.logger.log_action(
-                        action="Удаление оборудования",
-                        target=f"Инв. № {item_id}"  
-                    )
-                    QMessageBox.information(self, "Успех", "Оборудование успешно удалено!")
-                    self.model.removeRow(selected_row)
-                    self.loadData()
-                    self.loadComboBoxData()
-                else:
-                    QMessageBox.critical(self, "Ошибка", 
-                                    f"Ошибка при удалении: {response.text}")
-                        
+                conn = get_connection()
+                with conn.cursor() as cur:
+                    cur.execute("DELETE FROM equipment WHERE id=%s", (item_id,))
+                    conn.commit()
+                conn.close()
+
+                self.logger.log_action("Удаление оборудования", f"Инв. № {item_id}")
+                QMessageBox.information(self, "Успех", "Оборудование успешно удалено!")
+
+                self.model.removeRow(selected_row)
+                self.loadData()
+                self.loadComboBoxData()
+
         except Exception as e:
-            QMessageBox.critical(self, "Ошибка", 
-                            f"Ошибка при удалении оборудования: {str(e)}")
+            QMessageBox.critical(self, "Ошибка", f"Ошибка при удалении оборудования: {str(e)}")
+
             
     def filterTableByType(self, index):
         if index == 0:  
@@ -688,40 +673,35 @@ class MainWindow(QMainWindow):
 
     def loadUserData(self):
         try:
-            
-            response = requests.get(f"http://{site}/dsa/hs/api/users")
-            users = response.json()
-            
+            conn = get_connection()
+            with conn.cursor() as cur:
+                cur.execute("SELECT login, role FROM users WHERE login != 'root'")
+                users = cur.fetchall()
+            conn.close()
+
             table = widgets.adduser_user_table
-            table.setRowCount(0)  
-            
-            
-            filtered_users = [user for user in users if user['login'] != "root"]
-            
-            
-            table.setRowCount(len(filtered_users))
-            
-            
-            for row, user in enumerate(filtered_users):
-                
-                login_item = QTableWidgetItem(user['login'])
+            table.setRowCount(0)
+            table.setRowCount(len(users))
+
+            for row, user in enumerate(users):
+                login_item = QTableWidgetItem(user["login"])
                 login_item.setTextAlignment(Qt.AlignCenter)
-                
-                
-                role_item = QTableWidgetItem(user['role'])
+
+                role_item = QTableWidgetItem(user["role"])
                 role_item.setTextAlignment(Qt.AlignCenter)
-                
-                if user['role'] == "admin":
-                    role_item.setForeground(QColor(255, 165, 0))  
+
+                if user["role"] == "admin":
+                    role_item.setForeground(QColor(255, 165, 0))  # оранжевый
                 else:
-                    role_item.setForeground(QColor(144, 238, 144))  
-                
+                    role_item.setForeground(QColor(144, 238, 144))  # зеленый
+
                 table.setItem(row, 0, login_item)
                 table.setItem(row, 1, role_item)
-                
+
         except Exception as e:
             print(f"Ошибка при загрузке пользователей: {e}")
             QMessageBox.critical(self, "Ошибка", f"Не удалось загрузить пользователей: {e}")
+
 
     def logout(self):
         
@@ -753,99 +733,73 @@ class MainWindow(QMainWindow):
     
     def createUser(self):
         try:
-            
             login = widgets.adduser_login.text().strip()
             password = widgets.adduser_password.text().strip()
             role_text = widgets.adduser_select_role.currentText()
-            
-            
+
             if not login or not password:
                 QMessageBox.warning(self, "Ошибка", "Введите логин и пароль!")
                 return
-                
-            
-            if role_text == "Администратор":
-                role = "admin"
-            else:
-                role = "user"
-            
-            
-            data = [{
-                "login": login,
-                "password": password,
-                "role": role
-            }]
-            
-            
-            response = requests.post(
-                f"http://{site}/dsa/hs/api/createuser",
-                json=data,
-                headers={'Content-Type': 'application/json'}
-            )
-            
-            if response.status_code == 200:
-                self.logger.log_action(
-                    action="Создание пользователя",
-                    target=login,
-                    )
-                QMessageBox.information(self, "Успех", "Пользователь успешно создан!")
-                
-                widgets.adduser_login.clear()
-                widgets.adduser_password.clear()
-                widgets.adduser_select_role.setCurrentIndex(0)
-                
-                self.loadUserData()
-            else:
-                QMessageBox.critical(self, "Ошибка", 
-                                f"Ошибка при создании пользователя: {response.text}")
+
+            role = "admin" if role_text == "Администратор" else "user"
+
+            conn = get_connection()
+            with conn.cursor() as cur:
+                cur.execute("INSERT INTO users (login, password, role) VALUES (%s, %s, %s)",
+                            (login, password, role))
+                conn.commit()
+            conn.close()
+
+            self.logger.log_action("Создание пользователя", login)
+            QMessageBox.information(self, "Успех", "Пользователь успешно создан!")
+
+            widgets.adduser_login.clear()
+            widgets.adduser_password.clear()
+            widgets.adduser_select_role.setCurrentIndex(0)
+
+            self.loadUserData()
 
         except Exception as e:
-            QMessageBox.critical(self, "Ошибка", 
-                            f"Ошибка при отправке данных: {str(e)}")
+            QMessageBox.critical(self, "Ошибка", f"Ошибка при создании пользователя: {str(e)}")
+
     
     def deleteUser(self):
         try:
-            
             selected_row = widgets.adduser_user_table.currentRow()
-            
-            
+
             if selected_row < 0:
                 QMessageBox.warning(self, "Ошибка", "Выберите пользователя для удаления!")
                 return
-                
-            
+
             login_item = widgets.adduser_user_table.item(selected_row, 0)
             login = login_item.text()
-            
-            
+
             msg_box = QMessageBox()
             msg_box.setWindowTitle("Подтверждение удаления")
             msg_box.setText(f"Вы уверены, что хотите удалить пользователя {login}?")
             msg_box.setIcon(QMessageBox.Question)
-            
-            
+
             yes_button = msg_box.addButton("Да", QMessageBox.YesRole)
             no_button = msg_box.addButton("Нет", QMessageBox.NoRole)
             msg_box.setDefaultButton(no_button)
-            
-            
-            msg_box.exec_()
-            
+
+            msg_box.exec()
+
             if msg_box.clickedButton() == yes_button:
-                
-                response = requests.get(f"http://{site}/dsa/hs/api/deluser/{login}")
-                
-                if response.status_code == 200:
-                    self.logger.log_action(
-                        action="Удаление",
-                        target=login,
-                    )
-                    QMessageBox.information(self, "Успех", f"Пользователь {login} успешно удален!")
-                    
-                    self.loadUserData()
-                else:
-                    QMessageBox.critical(self, "Ошибка", 
-                                    f"Ошибка при удалении пользователя: {response.text}")
+                conn = get_connection()
+                with conn.cursor() as cur:
+                    cur.execute("DELETE FROM users WHERE login=%s", (login,))
+                    conn.commit()
+                conn.close()
+
+                self.logger.log_action("Удаление пользователя", login)
+                QMessageBox.information(self, "Успех", f"Пользователь {login} успешно удален!")
+
+                self.loadUserData()
+
+        except Exception as e:
+            QMessageBox.critical(self, "Ошибка", f"Произошла ошибка: {str(e)}")
+
                     
         except Exception as e:
             QMessageBox.critical(self, "Ошибка", 
@@ -892,29 +846,28 @@ class MainWindow(QMainWindow):
     
     def loadLogsData(self):
         try:
-            response = requests.get(f"http://{site}/dsa/hs/api/logs")
-            
-            if response.status_code == 200:
-                logs_data = response.json()
-                self.logs_model.removeRows(0, self.logs_model.rowCount())
-                
-                for log in logs_data:
-                    row = [
-                        QStandardItem(log.get('user', 'N/A')),
-                        QStandardItem(log.get('interact', 'N/A')),
-                        QStandardItem(log.get('target', 'N/A')),
-                        QStandardItem(log.get('data', 'N/A'))  
-                    ]
-                    
-                    for item in row:
-                        item.setTextAlignment(Qt.AlignCenter)
-                        item.setEditable(False)
-                    
-                    self.logs_model.appendRow(row)
-                
-                
-                self.logs_model.sort(3, Qt.DescendingOrder)
-                
+            conn = get_connection()
+            with conn.cursor() as cur:
+                cur.execute("SELECT user, interact, target, DATE_FORMAT(data, '%d.%m.%Y %H:%i:%s') as data FROM logs ORDER BY data DESC")
+                logs_data = cur.fetchall()
+            conn.close()
+
+            self.logs_model.removeRows(0, self.logs_model.rowCount())
+
+            for log in logs_data:
+                row = [
+                    QStandardItem(log.get("user", "N/A")),
+                    QStandardItem(log.get("interact", "N/A")),
+                    QStandardItem(log.get("target", "N/A")),
+                    QStandardItem(log.get("data", "N/A"))
+                ]
+
+                for item in row:
+                    item.setTextAlignment(Qt.AlignCenter)
+                    item.setEditable(False)
+
+                self.logs_model.appendRow(row)
+
         except Exception as e:
             print(f"Ошибка загрузки логов: {str(e)}")
             self.logs_model.appendRow([
@@ -923,6 +876,7 @@ class MainWindow(QMainWindow):
                 QStandardItem(""),
                 QStandardItem("")
             ])
+
 
 
 

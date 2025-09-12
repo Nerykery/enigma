@@ -1760,7 +1760,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                       <string notr="true">background: transparent;</string>
                      </property>
                      <property name="currentIndex">
-                      <number>0</number>
+                      <number>1</number>
                      </property>
                      <widget class="QWidget" name="adduser_page">
                       <widget class="QTableWidget" name="adduser_user_table">
@@ -2359,17 +2359,17 @@ background-repeat: no-repeat;</string>
                        </property>
                        <item>
                         <property name="text">
+                         <string>aaa</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
                          <string>Ответственный</string>
                         </property>
                        </item>
                        <item>
                         <property name="text">
-                         <string>Петров Петр Петрович</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Иванов Иван Иванович</string>
+                         <string>Добавить</string>
                         </property>
                        </item>
                       </widget>
@@ -2646,61 +2646,6 @@ background-repeat: no-repeat;</string>
                        <item>
                         <property name="text">
                          <string>Тип</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Системные блоки</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Мониторы</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Мышки</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Клавиатуры</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Микрофоны</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Веб-камеры</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Принтеры</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Сканеры</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>МФУ</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Проекторы</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Чайники</string>
                         </property>
                        </item>
                       </widget>
@@ -3000,7 +2945,7 @@ background-repeat: no-repeat;</string>
                                 <rect>
                                  <x>0</x>
                                  <y>0</y>
-                                 <width>351</width>
+                                 <width>218</width>
                                  <height>218</height>
                                 </rect>
                                </property>

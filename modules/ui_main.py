@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainvmTGOk.ui'
+## Form generated from reading UI file 'mainORhwLE.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.2
 ##
@@ -1256,17 +1256,6 @@ class Ui_MainWindow(object):
         self.invent_create_sost.setFrame(True)
         self.invent_create_type = QComboBox(self.home)
         self.invent_create_type.addItem("")
-        self.invent_create_type.addItem("")
-        self.invent_create_type.addItem("")
-        self.invent_create_type.addItem("")
-        self.invent_create_type.addItem("")
-        self.invent_create_type.addItem("")
-        self.invent_create_type.addItem("")
-        self.invent_create_type.addItem("")
-        self.invent_create_type.addItem("")
-        self.invent_create_type.addItem("")
-        self.invent_create_type.addItem("")
-        self.invent_create_type.addItem("")
         self.invent_create_type.setObjectName(u"invent_create_type")
         self.invent_create_type.setGeometry(QRect(0, 480, 191, 31))
         self.invent_create_type.setFont(font)
@@ -1417,7 +1406,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 351, 218))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 218, 218))
         self.scrollAreaWidgetContents.setStyleSheet(u" QScrollBar:vertical {\n"
 "	border: none;\n"
 "    background: rgb(52, 59, 72);\n"
@@ -1742,7 +1731,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1863,9 +1852,9 @@ class Ui_MainWindow(object):
         self.login.setText(QCoreApplication.translate("MainWindow", u"\u041b\u043e\u0433\u0438\u043d", None))
         self.password.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u043e\u043b\u044c", None))
         self.invent_search_button.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0438\u0441\u043a", None))
-        self.invent_create_curator.setItemText(0, QCoreApplication.translate("MainWindow", u"\u041e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u044b\u0439", None))
-        self.invent_create_curator.setItemText(1, QCoreApplication.translate("MainWindow", u"\u041f\u0435\u0442\u0440\u043e\u0432 \u041f\u0435\u0442\u0440 \u041f\u0435\u0442\u0440\u043e\u0432\u0438\u0447", None))
-        self.invent_create_curator.setItemText(2, QCoreApplication.translate("MainWindow", u"\u0418\u0432\u0430\u043d\u043e\u0432 \u0418\u0432\u0430\u043d \u0418\u0432\u0430\u043d\u043e\u0432\u0438\u0447", None))
+        self.invent_create_curator.setItemText(0, QCoreApplication.translate("MainWindow", u"aaa", None))
+        self.invent_create_curator.setItemText(1, QCoreApplication.translate("MainWindow", u"\u041e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u044b\u0439", None))
+        self.invent_create_curator.setItemText(2, QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
 
         self.invent_create_room.setItemText(0, QCoreApplication.translate("MainWindow", u"\u041f\u043e\u043c\u0435\u0449\u0435\u043d\u0438\u0435", None))
         self.invent_create_room.setItemText(1, QCoreApplication.translate("MainWindow", u"\u041a\u0430\u0431\u0438\u043d\u0435\u0442 123", None))
@@ -1887,17 +1876,6 @@ class Ui_MainWindow(object):
         self.invent_create_sost.setItemText(3, QCoreApplication.translate("MainWindow", u"\u0420\u0430\u0431\u043e\u0442\u0430\u0435\u0442", None))
 
         self.invent_create_type.setItemText(0, QCoreApplication.translate("MainWindow", u"\u0422\u0438\u043f", None))
-        self.invent_create_type.setItemText(1, QCoreApplication.translate("MainWindow", u"\u0421\u0438\u0441\u0442\u0435\u043c\u043d\u044b\u0435 \u0431\u043b\u043e\u043a\u0438", None))
-        self.invent_create_type.setItemText(2, QCoreApplication.translate("MainWindow", u"\u041c\u043e\u043d\u0438\u0442\u043e\u0440\u044b", None))
-        self.invent_create_type.setItemText(3, QCoreApplication.translate("MainWindow", u"\u041c\u044b\u0448\u043a\u0438", None))
-        self.invent_create_type.setItemText(4, QCoreApplication.translate("MainWindow", u"\u041a\u043b\u0430\u0432\u0438\u0430\u0442\u0443\u0440\u044b", None))
-        self.invent_create_type.setItemText(5, QCoreApplication.translate("MainWindow", u"\u041c\u0438\u043a\u0440\u043e\u0444\u043e\u043d\u044b", None))
-        self.invent_create_type.setItemText(6, QCoreApplication.translate("MainWindow", u"\u0412\u0435\u0431-\u043a\u0430\u043c\u0435\u0440\u044b", None))
-        self.invent_create_type.setItemText(7, QCoreApplication.translate("MainWindow", u"\u041f\u0440\u0438\u043d\u0442\u0435\u0440\u044b", None))
-        self.invent_create_type.setItemText(8, QCoreApplication.translate("MainWindow", u"\u0421\u043a\u0430\u043d\u0435\u0440\u044b", None))
-        self.invent_create_type.setItemText(9, QCoreApplication.translate("MainWindow", u"\u041c\u0424\u0423", None))
-        self.invent_create_type.setItemText(10, QCoreApplication.translate("MainWindow", u"\u041f\u0440\u043e\u0435\u043a\u0442\u043e\u0440\u044b", None))
-        self.invent_create_type.setItemText(11, QCoreApplication.translate("MainWindow", u"\u0427\u0430\u0439\u043d\u0438\u043a\u0438", None))
 
         self.labelBoxBlenderInstalation.setText(QCoreApplication.translate("MainWindow", u"FILE BOX", None))
         self.lineEdit.setText("")
