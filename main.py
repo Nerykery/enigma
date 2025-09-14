@@ -152,6 +152,8 @@ class MainWindow(QMainWindow):
         
         widgets.invent_create_id.setText(self.generateInventoryId())
         widgets.btn_home.clicked.connect(self.buttonClick)
+        widgets.btn_test.clicked.connect(self.buttonClick)
+        widgets.btn_curators.clicked.connect(self.buttonClick)
         widgets.btn_logs.clicked.connect(self.buttonClick)
         widgets.btn_add_user.clicked.connect(self.buttonClick)
         widgets.invent_delete_button.clicked.connect(self.deleteEquipment)
@@ -164,11 +166,13 @@ class MainWindow(QMainWindow):
         self.init_ui()
         self.logger = Logger(self.user_data.get('login', 'unknown'))
         self.setupLogsTable()
+        self.setupCuratorsTable()
         # widgets.btn_logs.clicked.connect(self.loadLogsData)
 
         self.loadComboBoxData()
         self.setupCreateEquipment()
-        self.setupUserTable() 
+        self.setupUserTable()
+        self.setupCuratorsTable() 
 
         
         def openCloseLeftBox():
@@ -354,6 +358,18 @@ class MainWindow(QMainWindow):
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
             QTimer.singleShot(1, self.loadData)
 
+        if btnName == "btn_test":
+            widgets.stackedWidget.setCurrentWidget(widgets.widgets)
+            UIFunctions.resetStyle(self, btnName)
+            btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
+
+        
+        if btnName == "btn_curators":
+            widgets.stackedWidget.setCurrentWidget(widgets.curators_page)
+            UIFunctions.resetStyle(self, btnName)
+            btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
+
+
         
         if btnName == "btn_widgets":
             widgets.stackedWidget.setCurrentWidget(widgets.widgets)
@@ -370,7 +386,6 @@ class MainWindow(QMainWindow):
             widgets.stackedWidget.setCurrentWidget(widgets.logs_page) 
             UIFunctions.resetStyle(self, btnName) 
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet())) 
-
             QTimer.singleShot(1, self.loadLogsData)
 
 
@@ -386,6 +401,7 @@ class MainWindow(QMainWindow):
         
         if btnName == "invent_create_button":
             self.createEquipment()
+
 
         
         print(f'Button "{btnName}" pressed!')
@@ -439,7 +455,6 @@ class MainWindow(QMainWindow):
             # --- Кураторы ---
             widgets.invent_create_curator.clear()
             widgets.invent_create_curator.addItem("Ответственный")
-            widgets.invent_create_curator.addItem("Добавить")
             for curator in curators_data:
                 full_name = f"{curator['fam']} {curator['name']} {curator['father'] or ''}".strip()
                 widgets.invent_create_curator.addItem(full_name)
@@ -599,6 +614,7 @@ class MainWindow(QMainWindow):
             
             for item_type in sorted(types):
                 widgets.invent_fillte_type.addItem(item_type)
+                widgets.invent_create_type.addItem(item_type)
                 
         except Exception as e:
             print(f"Ошибка при загрузке фильтра: {e}")
@@ -876,6 +892,180 @@ class MainWindow(QMainWindow):
                 QStandardItem(""),
                 QStandardItem("")
             ])
+
+    def setupCuratorsTable(self):
+        table = widgets.curators_table
+
+        self.curators_model = QStandardItemModel()
+        table.setModel(self.curators_model)
+
+        headers = ["ID", "Фамилия", "Имя", "Отчество", "Телефон"]
+        self.curators_model.setHorizontalHeaderLabels(headers)
+
+        # --- стиль ---
+        table.setStyleSheet("""
+            QTableView {
+                background-color: rgb(33, 37, 43);
+                alternate-background-color: rgb(33, 37, 43);
+                gridline-color: #dee2e6;
+                border: 1px solid #ced4da;
+                border-radius: 5px;
+            }
+            QHeaderView::section {
+                background-color: rgb(33, 37, 43);
+                color: white;
+                padding: 5px;
+                border: 1px solid;
+                font-weight: bold;
+            }
+        """)
+
+        font = QFont()
+        font.setBold(True)
+        font.setPointSize(10)
+        table.horizontalHeader().setFont(font)
+        table.verticalHeader().setVisible(False)
+
+        table.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive)
+        table.horizontalHeader().setStretchLastSection(True)
+        table.verticalHeader().setDefaultSectionSize(30)
+        table.setAlternatingRowColors(True)
+        table.setSelectionBehavior(QTableView.SelectRows)
+        table.setSelectionMode(QTableView.SingleSelection)
+        table.setSortingEnabled(False)
+
+        # --- ширина колонок ---
+        table.setColumnWidth(0, 80)   # ID
+        table.setColumnWidth(1, 200)  # Фамилия
+        table.setColumnWidth(2, 150)  # Имя
+        table.setColumnWidth(3, 150)  # Отчество
+        table.setColumnWidth(4, 180)  # Телефон
+
+        # Подключаем кнопки
+        widgets.curators_create_button.clicked.connect(self.createCurator)
+        widgets.curators_delete_button.clicked.connect(self.deleteCurator)
+
+        self.loadCuratorsData()
+
+    def loadCuratorsData(self):
+        """Загрузка кураторов из базы"""
+        try:
+            conn = get_connection()
+            with conn.cursor() as cur:
+                cur.execute("SELECT * FROM curators")
+                curators = cur.fetchall()
+            conn.close()
+
+            self.curators_model.removeRows(0, self.curators_model.rowCount())
+
+            for c in curators:
+                row = [
+                    QStandardItem(str(c["id"])),
+                    QStandardItem(c["fam"]),
+                    QStandardItem(c["name"]),
+                    QStandardItem(c["father"] or ""),
+                    QStandardItem(c["phonenumber"] or ""),
+                ]
+                for item in row:
+                    item.setTextAlignment(Qt.AlignCenter)
+                    item.setEditable(False)
+                self.curators_model.appendRow(row)
+
+        except Exception as e:
+            QMessageBox.critical(self, "Ошибка", f"Не удалось загрузить кураторов: {e}")
+
+    def createCurator(self):
+        fam = widgets.curators_surname.text().strip()
+        name = widgets.curators_name.text().strip()
+        father = widgets.curators_otchestvo.text().strip()
+        phone = widgets.curators_phone.text().strip()
+
+        if not fam or not name:
+            QMessageBox.warning(self, "Ошибка", "Введите фамилию и имя куратора!")
+            return
+
+        try:
+            conn = get_connection()
+            with conn.cursor() as cur:
+                cur.execute(
+                    "INSERT INTO curators (fam, name, father, phonenumber) VALUES (%s, %s, %s, %s)",
+                    (fam, name, father, phone),
+                )
+                curator_id = cur.lastrowid  # получаем id вставленной записи
+                conn.commit()
+            conn.close()
+
+            self.logger.log_action("Создание куратора", f"{fam} {name}")
+            QMessageBox.information(self, "Успех", "Куратор успешно добавлен!")
+
+            # очищаем поля
+            widgets.curators_surname.clear()
+            widgets.curators_name.clear()
+            widgets.curators_otchestvo.clear()
+            widgets.curators_phone.clear()
+
+            # добавляем новую строку в модель без полной перезагрузки
+            row = [
+                QStandardItem(str(curator_id)),
+                QStandardItem(fam),
+                QStandardItem(name),
+                QStandardItem(father or ""),
+                QStandardItem(phone or ""),
+            ]
+            for item in row:
+                item.setTextAlignment(Qt.AlignCenter)
+                item.setEditable(False)
+            self.curators_model.appendRow(row)
+
+            self.loadComboBoxData()  # обновляем список ответственных
+
+        except Exception as e:
+            QMessageBox.critical(self, "Ошибка", f"Ошибка при добавлении куратора: {e}")
+
+
+    def deleteCurator(self):
+        selected_row = widgets.curators_table.currentIndex().row()
+        if selected_row < 0:
+            QMessageBox.warning(self, "Ошибка", "Выберите куратора для удаления!")
+            return
+
+        curator_id = self.curators_model.item(selected_row, 0).text()
+        curator_name = self.curators_model.item(selected_row, 1).text()
+
+        msg_box = QMessageBox()
+        msg_box.setWindowTitle("Подтверждение удаления")
+        msg_box.setText(f"Удалить куратора {curator_name}?")
+        msg_box.setIcon(QMessageBox.Question)
+        yes_button = msg_box.addButton("Да", QMessageBox.YesRole)
+        no_button = msg_box.addButton("Нет", QMessageBox.NoRole)
+        msg_box.setDefaultButton(no_button)
+        msg_box.exec()
+
+        if msg_box.clickedButton() == yes_button:
+            try:
+                conn = get_connection()
+                with conn.cursor() as cur:
+                    cur.execute("DELETE FROM curators WHERE id=%s", (curator_id,))
+                    conn.commit()
+                conn.close()
+
+                self.logger.log_action("Удаление куратора", curator_name)
+                QMessageBox.information(self, "Успех", "Куратор удалён!")
+
+                # удаляем строку из модели сразу
+                self.curators_model.removeRow(selected_row)
+
+                # сбрасываем выделение
+                widgets.curators_table.clearSelection()
+
+                self.loadComboBoxData()
+
+            except Exception as e:
+                QMessageBox.critical(self, "Ошибка", f"Ошибка при удалении: {e}")
+
+
+
+
 
 
 

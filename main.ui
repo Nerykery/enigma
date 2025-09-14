@@ -8,13 +8,13 @@
     <x>0</x>
     <y>0</y>
     <width>1280</width>
-    <height>721</height>
+    <height>720</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1280</width>
-    <height>720</height>
+    <width>80</width>
+    <height>0</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -537,22 +537,7 @@ Button */
 
 </string>
    </property>
-   <layout class="QVBoxLayout" name="appMargins">
-    <property name="spacing">
-     <number>0</number>
-    </property>
-    <property name="leftMargin">
-     <number>10</number>
-    </property>
-    <property name="topMargin">
-     <number>10</number>
-    </property>
-    <property name="rightMargin">
-     <number>10</number>
-    </property>
-    <property name="bottomMargin">
-     <number>10</number>
-    </property>
+   <layout class="QVBoxLayout" name="verticalLayout_31">
     <item>
      <widget class="QFrame" name="bgApp">
       <property name="styleSheet">
@@ -948,6 +933,78 @@ background-repeat: no-repeat;</string>
                   </property>
                   <property name="text">
                    <string>Управление пользователями</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="btn_test">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>45</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>Segoe UI</family>
+                    <pointsize>10</pointsize>
+                    <italic>false</italic>
+                    <bold>false</bold>
+                   </font>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="layoutDirection">
+                   <enum>Qt::LayoutDirection::LeftToRight</enum>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">background-image: url(:/icons/images/icons/cil-briefcase.png);</string>
+                  </property>
+                  <property name="text">
+                   <string>Главная</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="btn_curators">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>45</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>Segoe UI</family>
+                    <pointsize>10</pointsize>
+                    <italic>false</italic>
+                    <bold>false</bold>
+                   </font>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="layoutDirection">
+                   <enum>Qt::LayoutDirection::LeftToRight</enum>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">background-image: url(:/icons/images/icons/cil-briefcase.png);</string>
+                  </property>
+                  <property name="text">
+                   <string>Главная</string>
                   </property>
                  </widget>
                 </item>
@@ -1756,11 +1813,17 @@ li.checked::marker { content: &quot;\2612&quot;; }
                    </property>
                    <item>
                     <widget class="QStackedWidget" name="stackedWidget">
+                     <property name="minimumSize">
+                      <size>
+                       <width>80</width>
+                       <height>0</height>
+                      </size>
+                     </property>
                      <property name="styleSheet">
                       <string notr="true">background: transparent;</string>
                      </property>
                      <property name="currentIndex">
-                      <number>1</number>
+                      <number>3</number>
                      </property>
                      <widget class="QWidget" name="adduser_page">
                       <widget class="QTableWidget" name="adduser_user_table">
@@ -2297,17 +2360,150 @@ li.checked::marker { content: &quot;\2612&quot;; }
                        <string notr="true">background-position: center;
 background-repeat: no-repeat;</string>
                       </property>
-                      <widget class="QTableView" name="invent_table">
-                       <property name="geometry">
-                        <rect>
-                         <x>10</x>
-                         <y>60</y>
-                         <width>1001</width>
-                         <height>361</height>
-                        </rect>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">            QTableWidget {
+                      <layout class="QVBoxLayout" name="verticalLayout_24">
+                       <item>
+                        <layout class="QGridLayout" name="gridLayout_4">
+                         <property name="sizeConstraint">
+                          <enum>QLayout::SizeConstraint::SetFixedSize</enum>
+                         </property>
+                         <property name="rightMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="bottomMargin">
+                          <number>0</number>
+                         </property>
+                         <item row="0" column="3" alignment="Qt::AlignmentFlag::AlignLeft">
+                          <widget class="QPushButton" name="invent_search_button">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <property name="minimumSize">
+                            <size>
+                             <width>150</width>
+                             <height>30</height>
+                            </size>
+                           </property>
+                           <property name="font">
+                            <font>
+                             <family>Segoe UI</family>
+                             <pointsize>10</pointsize>
+                             <italic>false</italic>
+                             <bold>false</bold>
+                            </font>
+                           </property>
+                           <property name="cursor">
+                            <cursorShape>PointingHandCursor</cursorShape>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">background-color: rgb(52, 59, 72);</string>
+                           </property>
+                           <property name="text">
+                            <string>Поиск</string>
+                           </property>
+                           <property name="icon">
+                            <iconset>
+                             <normaloff>images/icons/cil-magnifying-glass.png</normaloff>images/icons/cil-magnifying-glass.png</iconset>
+                           </property>
+                          </widget>
+                         </item>
+                         <item row="0" column="2">
+                          <widget class="QLineEdit" name="invent_search">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                             <horstretch>30</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <property name="minimumSize">
+                            <size>
+                             <width>0</width>
+                             <height>30</height>
+                            </size>
+                           </property>
+                           <property name="maximumSize">
+                            <size>
+                             <width>500</width>
+                             <height>16777215</height>
+                            </size>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">background-color: rgb(33, 37, 43);</string>
+                           </property>
+                           <property name="text">
+                            <string/>
+                           </property>
+                           <property name="placeholderText">
+                            <string>Поиск по базе</string>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <layout class="QGridLayout" name="gridLayout_10">
+                         <item row="0" column="1">
+                          <layout class="QHBoxLayout" name="horizontalLayout_6">
+                           <item alignment="Qt::AlignmentFlag::AlignTop">
+                            <widget class="QComboBox" name="invent_fillte_type">
+                             <property name="enabled">
+                              <bool>true</bool>
+                             </property>
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Fixed" vsizetype="Maximum">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>16777215</width>
+                               <height>33</height>
+                              </size>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <family>Segoe UI</family>
+                               <pointsize>10</pointsize>
+                               <italic>false</italic>
+                               <bold>false</bold>
+                              </font>
+                             </property>
+                             <property name="layoutDirection">
+                              <enum>Qt::LayoutDirection::LeftToRight</enum>
+                             </property>
+                             <property name="autoFillBackground">
+                              <bool>false</bool>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">background-color: rgb(33, 37, 43);</string>
+                             </property>
+                             <property name="iconSize">
+                              <size>
+                               <width>16</width>
+                               <height>16</height>
+                              </size>
+                             </property>
+                             <property name="frame">
+                              <bool>true</bool>
+                             </property>
+                             <item>
+                              <property name="text">
+                               <string>Фильтр по типу</string>
+                              </property>
+                             </item>
+                            </widget>
+                           </item>
+                          </layout>
+                         </item>
+                         <item row="0" column="0">
+                          <layout class="QVBoxLayout" name="verticalLayout_22">
+                           <item>
+                            <widget class="QTableView" name="invent_table">
+                             <property name="styleSheet">
+                              <string notr="true">            QTableWidget {
                 background-color: #f8f9fa;
                 alternate-background-color: #e9ecef;
                 gridline-color: #dee2e6;
@@ -2324,331 +2520,267 @@ background-repeat: no-repeat;</string>
             QTableWidget::item {
                 padding: 5px;
             }</string>
-                       </property>
-                      </widget>
-                      <widget class="QPushButton" name="invent_search_button">
-                       <property name="geometry">
-                        <rect>
-                         <x>480</x>
-                         <y>20</y>
-                         <width>71</width>
-                         <height>31</height>
-                        </rect>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">background-color: rgb(33, 37, 43);</string>
-                       </property>
-                       <property name="text">
-                        <string>Поиск</string>
-                       </property>
-                      </widget>
-                      <widget class="QComboBox" name="invent_create_curator">
-                       <property name="geometry">
-                        <rect>
-                         <x>0</x>
-                         <y>520</y>
-                         <width>311</width>
-                         <height>31</height>
-                        </rect>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">background-color: rgb(33, 37, 43);</string>
-                       </property>
-                       <property name="placeholderText">
-                        <string notr="true" comment="123" extracomment="123"/>
-                       </property>
-                       <item>
-                        <property name="text">
-                         <string>aaa</string>
-                        </property>
+                             </property>
+                            </widget>
+                           </item>
+                           <item alignment="Qt::AlignmentFlag::AlignRight">
+                            <widget class="QPushButton" name="invent_delete_button">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="minimumSize">
+                              <size>
+                               <width>141</width>
+                               <height>31</height>
+                              </size>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">background-color: rgb(33, 37, 43);</string>
+                             </property>
+                             <property name="text">
+                              <string>Удалить</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <layout class="QGridLayout" name="gridLayout_8">
+                             <item row="0" column="1">
+                              <widget class="QLineEdit" name="invent_create_name">
+                               <property name="minimumSize">
+                                <size>
+                                 <width>300</width>
+                                 <height>30</height>
+                                </size>
+                               </property>
+                               <property name="styleSheet">
+                                <string notr="true">background-color: rgb(33, 37, 43);</string>
+                               </property>
+                               <property name="text">
+                                <string/>
+                               </property>
+                               <property name="placeholderText">
+                                <string>Название</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="2" column="0">
+                              <widget class="QComboBox" name="invent_create_curator">
+                               <property name="minimumSize">
+                                <size>
+                                 <width>0</width>
+                                 <height>0</height>
+                                </size>
+                               </property>
+                               <property name="styleSheet">
+                                <string notr="true">background-color: rgb(33, 37, 43);</string>
+                               </property>
+                               <property name="placeholderText">
+                                <string notr="true" comment="123" extracomment="123"/>
+                               </property>
+                               <item>
+                                <property name="text">
+                                 <string>Ответственный</string>
+                                </property>
+                               </item>
+                               <item>
+                                <property name="text">
+                                 <string>Добавить</string>
+                                </property>
+                               </item>
+                              </widget>
+                             </item>
+                             <item row="3" column="0">
+                              <widget class="QComboBox" name="invent_create_room">
+                               <property name="styleSheet">
+                                <string notr="true">background-color: rgb(33, 37, 43);</string>
+                               </property>
+                               <property name="editable">
+                                <bool>true</bool>
+                               </property>
+                               <property name="placeholderText">
+                                <string notr="true" comment="123" extracomment="123"/>
+                               </property>
+                               <property name="duplicatesEnabled">
+                                <bool>false</bool>
+                               </property>
+                               <item>
+                                <property name="text">
+                                 <string>Помещение</string>
+                                </property>
+                               </item>
+                               <item>
+                                <property name="text">
+                                 <string>Кабинет 123</string>
+                                </property>
+                               </item>
+                               <item>
+                                <property name="text">
+                                 <string>Кабинет 321</string>
+                                </property>
+                               </item>
+                              </widget>
+                             </item>
+                             <item row="2" column="1">
+                              <widget class="QPushButton" name="invent_create_button">
+                               <property name="sizePolicy">
+                                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                                 <horstretch>0</horstretch>
+                                 <verstretch>0</verstretch>
+                                </sizepolicy>
+                               </property>
+                               <property name="minimumSize">
+                                <size>
+                                 <width>141</width>
+                                 <height>31</height>
+                                </size>
+                               </property>
+                               <property name="styleSheet">
+                                <string notr="true">background-color: rgb(33, 37, 43);</string>
+                               </property>
+                               <property name="text">
+                                <string>Добавить</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="0" column="0">
+                              <widget class="QLineEdit" name="invent_create_id">
+                               <property name="minimumSize">
+                                <size>
+                                 <width>0</width>
+                                 <height>30</height>
+                                </size>
+                               </property>
+                               <property name="styleSheet">
+                                <string notr="true">background-color: rgb(33, 37, 43);</string>
+                               </property>
+                               <property name="text">
+                                <string/>
+                               </property>
+                               <property name="placeholderText">
+                                <string>инвент номер или автогенерация</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="1" column="0">
+                              <layout class="QGridLayout" name="gridLayout_9">
+                               <item row="0" column="1">
+                                <widget class="QComboBox" name="invent_create_sost">
+                                 <property name="sizePolicy">
+                                  <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                                   <horstretch>0</horstretch>
+                                   <verstretch>0</verstretch>
+                                  </sizepolicy>
+                                 </property>
+                                 <property name="font">
+                                  <font>
+                                   <family>Segoe UI</family>
+                                   <pointsize>10</pointsize>
+                                   <italic>false</italic>
+                                   <bold>false</bold>
+                                  </font>
+                                 </property>
+                                 <property name="autoFillBackground">
+                                  <bool>false</bool>
+                                 </property>
+                                 <property name="styleSheet">
+                                  <string notr="true">background-color: rgb(33, 37, 43);</string>
+                                 </property>
+                                 <property name="iconSize">
+                                  <size>
+                                   <width>16</width>
+                                   <height>16</height>
+                                  </size>
+                                 </property>
+                                 <property name="frame">
+                                  <bool>true</bool>
+                                 </property>
+                                 <item>
+                                  <property name="text">
+                                   <string>Состояние</string>
+                                  </property>
+                                 </item>
+                                 <item>
+                                  <property name="text">
+                                   <string>На складе</string>
+                                  </property>
+                                 </item>
+                                 <item>
+                                  <property name="text">
+                                   <string>Сломан</string>
+                                  </property>
+                                 </item>
+                                 <item>
+                                  <property name="text">
+                                   <string>Работает</string>
+                                  </property>
+                                 </item>
+                                </widget>
+                               </item>
+                               <item row="0" column="0">
+                                <widget class="QComboBox" name="invent_create_type">
+                                 <property name="sizePolicy">
+                                  <sizepolicy hsizetype="Fixed" vsizetype="Maximum">
+                                   <horstretch>0</horstretch>
+                                   <verstretch>0</verstretch>
+                                  </sizepolicy>
+                                 </property>
+                                 <property name="minimumSize">
+                                  <size>
+                                   <width>100</width>
+                                   <height>0</height>
+                                  </size>
+                                 </property>
+                                 <property name="maximumSize">
+                                  <size>
+                                   <width>1000</width>
+                                   <height>16777215</height>
+                                  </size>
+                                 </property>
+                                 <property name="font">
+                                  <font>
+                                   <family>Segoe UI</family>
+                                   <pointsize>10</pointsize>
+                                   <italic>false</italic>
+                                   <bold>false</bold>
+                                  </font>
+                                 </property>
+                                 <property name="autoFillBackground">
+                                  <bool>false</bool>
+                                 </property>
+                                 <property name="styleSheet">
+                                  <string notr="true">background-color: rgb(33, 37, 43);</string>
+                                 </property>
+                                 <property name="editable">
+                                  <bool>true</bool>
+                                 </property>
+                                 <property name="iconSize">
+                                  <size>
+                                   <width>16</width>
+                                   <height>16</height>
+                                  </size>
+                                 </property>
+                                 <property name="frame">
+                                  <bool>true</bool>
+                                 </property>
+                                 <item>
+                                  <property name="text">
+                                   <string>Тип</string>
+                                  </property>
+                                 </item>
+                                </widget>
+                               </item>
+                              </layout>
+                             </item>
+                            </layout>
+                           </item>
+                          </layout>
+                         </item>
+                        </layout>
                        </item>
-                       <item>
-                        <property name="text">
-                         <string>Ответственный</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Добавить</string>
-                        </property>
-                       </item>
-                      </widget>
-                      <widget class="QComboBox" name="invent_create_room">
-                       <property name="geometry">
-                        <rect>
-                         <x>0</x>
-                         <y>560</y>
-                         <width>311</width>
-                         <height>31</height>
-                        </rect>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">background-color: rgb(33, 37, 43);</string>
-                       </property>
-                       <property name="editable">
-                        <bool>true</bool>
-                       </property>
-                       <property name="placeholderText">
-                        <string notr="true" comment="123" extracomment="123"/>
-                       </property>
-                       <property name="duplicatesEnabled">
-                        <bool>false</bool>
-                       </property>
-                       <item>
-                        <property name="text">
-                         <string>Помещение</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Кабинет 123</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Кабинет 321</string>
-                        </property>
-                       </item>
-                      </widget>
-                      <widget class="QPushButton" name="invent_create_button">
-                       <property name="geometry">
-                        <rect>
-                         <x>320</x>
-                         <y>520</y>
-                         <width>91</width>
-                         <height>31</height>
-                        </rect>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">background-color: rgb(33, 37, 43);</string>
-                       </property>
-                       <property name="text">
-                        <string>Добавить</string>
-                       </property>
-                      </widget>
-                      <widget class="QPushButton" name="invent_delete_button">
-                       <property name="geometry">
-                        <rect>
-                         <x>910</x>
-                         <y>430</y>
-                         <width>91</width>
-                         <height>31</height>
-                        </rect>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">background-color: rgb(33, 37, 43);</string>
-                       </property>
-                       <property name="text">
-                        <string>Удалить</string>
-                       </property>
-                      </widget>
-                      <widget class="QLineEdit" name="invent_create_id">
-                       <property name="geometry">
-                        <rect>
-                         <x>0</x>
-                         <y>440</y>
-                         <width>221</width>
-                         <height>31</height>
-                        </rect>
-                       </property>
-                       <property name="minimumSize">
-                        <size>
-                         <width>0</width>
-                         <height>30</height>
-                        </size>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">background-color: rgb(33, 37, 43);</string>
-                       </property>
-                       <property name="text">
-                        <string/>
-                       </property>
-                       <property name="placeholderText">
-                        <string>инвент номер или автогенерация</string>
-                       </property>
-                      </widget>
-                      <widget class="QLineEdit" name="invent_search">
-                       <property name="geometry">
-                        <rect>
-                         <x>10</x>
-                         <y>20</y>
-                         <width>451</width>
-                         <height>31</height>
-                        </rect>
-                       </property>
-                       <property name="minimumSize">
-                        <size>
-                         <width>0</width>
-                         <height>30</height>
-                        </size>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">background-color: rgb(33, 37, 43);</string>
-                       </property>
-                       <property name="text">
-                        <string/>
-                       </property>
-                       <property name="placeholderText">
-                        <string>поиск по базе</string>
-                       </property>
-                      </widget>
-                      <widget class="QLineEdit" name="invent_create_name">
-                       <property name="geometry">
-                        <rect>
-                         <x>230</x>
-                         <y>440</y>
-                         <width>221</width>
-                         <height>31</height>
-                        </rect>
-                       </property>
-                       <property name="minimumSize">
-                        <size>
-                         <width>0</width>
-                         <height>30</height>
-                        </size>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">background-color: rgb(33, 37, 43);</string>
-                       </property>
-                       <property name="text">
-                        <string/>
-                       </property>
-                       <property name="placeholderText">
-                        <string>Название</string>
-                       </property>
-                      </widget>
-                      <widget class="QComboBox" name="invent_fillte_type">
-                       <property name="geometry">
-                        <rect>
-                         <x>1020</x>
-                         <y>60</y>
-                         <width>151</width>
-                         <height>31</height>
-                        </rect>
-                       </property>
-                       <property name="font">
-                        <font>
-                         <family>Segoe UI</family>
-                         <pointsize>10</pointsize>
-                         <italic>false</italic>
-                         <bold>false</bold>
-                        </font>
-                       </property>
-                       <property name="autoFillBackground">
-                        <bool>false</bool>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">background-color: rgb(33, 37, 43);</string>
-                       </property>
-                       <property name="iconSize">
-                        <size>
-                         <width>16</width>
-                         <height>16</height>
-                        </size>
-                       </property>
-                       <property name="frame">
-                        <bool>true</bool>
-                       </property>
-                       <item>
-                        <property name="text">
-                         <string>Фильтр по типу</string>
-                        </property>
-                       </item>
-                      </widget>
-                      <widget class="QComboBox" name="invent_create_sost">
-                       <property name="geometry">
-                        <rect>
-                         <x>200</x>
-                         <y>480</y>
-                         <width>111</width>
-                         <height>31</height>
-                        </rect>
-                       </property>
-                       <property name="font">
-                        <font>
-                         <family>Segoe UI</family>
-                         <pointsize>10</pointsize>
-                         <italic>false</italic>
-                         <bold>false</bold>
-                        </font>
-                       </property>
-                       <property name="autoFillBackground">
-                        <bool>false</bool>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">background-color: rgb(33, 37, 43);</string>
-                       </property>
-                       <property name="iconSize">
-                        <size>
-                         <width>16</width>
-                         <height>16</height>
-                        </size>
-                       </property>
-                       <property name="frame">
-                        <bool>true</bool>
-                       </property>
-                       <item>
-                        <property name="text">
-                         <string>Состояние</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>На складе</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Сломан</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>Работает</string>
-                        </property>
-                       </item>
-                      </widget>
-                      <widget class="QComboBox" name="invent_create_type">
-                       <property name="geometry">
-                        <rect>
-                         <x>0</x>
-                         <y>480</y>
-                         <width>191</width>
-                         <height>31</height>
-                        </rect>
-                       </property>
-                       <property name="font">
-                        <font>
-                         <family>Segoe UI</family>
-                         <pointsize>10</pointsize>
-                         <italic>false</italic>
-                         <bold>false</bold>
-                        </font>
-                       </property>
-                       <property name="autoFillBackground">
-                        <bool>false</bool>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">background-color: rgb(33, 37, 43);</string>
-                       </property>
-                       <property name="editable">
-                        <bool>true</bool>
-                       </property>
-                       <property name="iconSize">
-                        <size>
-                         <width>16</width>
-                         <height>16</height>
-                        </size>
-                       </property>
-                       <property name="frame">
-                        <bool>true</bool>
-                       </property>
-                       <item>
-                        <property name="text">
-                         <string>Тип</string>
-                        </property>
-                       </item>
-                      </widget>
+                      </layout>
                      </widget>
                      <widget class="QWidget" name="widgets">
                       <property name="styleSheet">
@@ -2945,7 +3077,7 @@ background-repeat: no-repeat;</string>
                                 <rect>
                                  <x>0</x>
                                  <y>0</y>
-                                 <width>218</width>
+                                 <width>352</width>
                                  <height>218</height>
                                 </rect>
                                </property>
@@ -3490,6 +3622,256 @@ background-repeat: no-repeat;</string>
                        </item>
                       </layout>
                      </widget>
+                     <widget class="QWidget" name="curators_page">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                        <horstretch>100</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>0</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
+                      <layout class="QVBoxLayout" name="verticalLayout_21">
+                       <item>
+                        <layout class="QGridLayout" name="gridLayout_31">
+                         <property name="sizeConstraint">
+                          <enum>QLayout::SizeConstraint::SetFixedSize</enum>
+                         </property>
+                         <property name="rightMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="bottomMargin">
+                          <number>0</number>
+                         </property>
+                         <item row="0" column="3" alignment="Qt::AlignmentFlag::AlignLeft">
+                          <widget class="QPushButton" name="curators_search_button">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <property name="minimumSize">
+                            <size>
+                             <width>150</width>
+                             <height>30</height>
+                            </size>
+                           </property>
+                           <property name="font">
+                            <font>
+                             <family>Segoe UI</family>
+                             <pointsize>10</pointsize>
+                             <italic>false</italic>
+                             <bold>false</bold>
+                            </font>
+                           </property>
+                           <property name="cursor">
+                            <cursorShape>PointingHandCursor</cursorShape>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">background-color: rgb(52, 59, 72);</string>
+                           </property>
+                           <property name="text">
+                            <string>Поиск</string>
+                           </property>
+                           <property name="icon">
+                            <iconset>
+                             <normaloff>images/icons/cil-magnifying-glass.png</normaloff>images/icons/cil-magnifying-glass.png</iconset>
+                           </property>
+                          </widget>
+                         </item>
+                         <item row="0" column="2">
+                          <widget class="QLineEdit" name="curators_search">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                             <horstretch>30</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <property name="minimumSize">
+                            <size>
+                             <width>0</width>
+                             <height>30</height>
+                            </size>
+                           </property>
+                           <property name="maximumSize">
+                            <size>
+                             <width>500</width>
+                             <height>16777215</height>
+                            </size>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">background-color: rgb(33, 37, 43);</string>
+                           </property>
+                           <property name="text">
+                            <string/>
+                           </property>
+                           <property name="placeholderText">
+                            <string>Поиск по базе</string>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <widget class="QTableView" name="curators_table">
+                         <property name="styleSheet">
+                          <string notr="true">            QTableWidget {
+                background-color: #f8f9fa;
+                alternate-background-color: #e9ecef;
+                gridline-color: #dee2e6;
+                border: 1px solid #ced4da;
+                border-radius: 5px;
+            }
+            QHeaderView::section {
+                background-color: #343a40;
+                color: white;
+                padding: 5px;
+                border: 1px solid #495057;
+                font-weight: bold;
+            }
+            QTableWidget::item {
+                padding: 5px;
+            }</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <layout class="QGridLayout" name="gridLayout_29">
+                         <item row="1" column="0">
+                          <widget class="QLineEdit" name="curators_name">
+                           <property name="minimumSize">
+                            <size>
+                             <width>0</width>
+                             <height>30</height>
+                            </size>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">background-color: rgb(33, 37, 43);</string>
+                           </property>
+                           <property name="text">
+                            <string/>
+                           </property>
+                           <property name="placeholderText">
+                            <string>Имя</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item row="0" column="0">
+                          <widget class="QLineEdit" name="curators_surname">
+                           <property name="minimumSize">
+                            <size>
+                             <width>0</width>
+                             <height>30</height>
+                            </size>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">background-color: rgb(33, 37, 43);</string>
+                           </property>
+                           <property name="text">
+                            <string/>
+                           </property>
+                           <property name="placeholderText">
+                            <string>Фамилия</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item row="1" column="1">
+                          <widget class="QPushButton" name="curators_create_button">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <property name="minimumSize">
+                            <size>
+                             <width>141</width>
+                             <height>31</height>
+                            </size>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">background-color: rgb(33, 37, 43);</string>
+                           </property>
+                           <property name="text">
+                            <string>Добавить</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item row="2" column="0">
+                          <widget class="QLineEdit" name="curators_otchestvo">
+                           <property name="minimumSize">
+                            <size>
+                             <width>0</width>
+                             <height>30</height>
+                            </size>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">background-color: rgb(33, 37, 43);</string>
+                           </property>
+                           <property name="text">
+                            <string/>
+                           </property>
+                           <property name="placeholderText">
+                            <string>Отчество</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item row="3" column="0">
+                          <widget class="QLineEdit" name="curators_phone">
+                           <property name="minimumSize">
+                            <size>
+                             <width>300</width>
+                             <height>30</height>
+                            </size>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">background-color: rgb(33, 37, 43);</string>
+                           </property>
+                           <property name="text">
+                            <string/>
+                           </property>
+                           <property name="placeholderText">
+                            <string>Номер телефона</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item row="0" column="1">
+                          <widget class="QPushButton" name="curators_delete_button">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <property name="minimumSize">
+                            <size>
+                             <width>141</width>
+                             <height>31</height>
+                            </size>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">background-color: rgb(33, 37, 43);</string>
+                           </property>
+                           <property name="text">
+                            <string>Удалить</string>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                      </layout>
+                     </widget>
                      <widget class="QWidget" name="logs_page">
                       <layout class="QVBoxLayout" name="verticalLayout_20">
                        <item>
@@ -3771,4 +4153,21 @@ background-repeat: no-repeat;</string>
   <include location="resources.qrc"/>
  </resources>
  <connections/>
+ <designerdata>
+  <property name="gridDeltaX">
+   <number>10</number>
+  </property>
+  <property name="gridDeltaY">
+   <number>10</number>
+  </property>
+  <property name="gridSnapX">
+   <bool>true</bool>
+  </property>
+  <property name="gridSnapY">
+   <bool>true</bool>
+  </property>
+  <property name="gridVisible">
+   <bool>true</bool>
+  </property>
+ </designerdata>
 </ui>

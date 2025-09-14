@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainORhwLE.ui'
+## Form generated from reading UI file 'mainnXyDAy.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.2
 ##
@@ -17,19 +17,19 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplication, QCheckBox,
     QComboBox, QCommandLinkButton, QFrame, QGridLayout,
-    QHBoxLayout, QHeaderView, QLabel, QLineEdit,
-    QMainWindow, QPlainTextEdit, QPushButton, QRadioButton,
-    QScrollArea, QScrollBar, QSizePolicy, QSlider,
-    QStackedWidget, QTableView, QTableWidget, QTableWidgetItem,
-    QTextEdit, QVBoxLayout, QWidget)
+    QHBoxLayout, QHeaderView, QLabel, QLayout,
+    QLineEdit, QMainWindow, QPlainTextEdit, QPushButton,
+    QRadioButton, QScrollArea, QScrollBar, QSizePolicy,
+    QSlider, QStackedWidget, QTableView, QTableWidget,
+    QTableWidgetItem, QTextEdit, QVBoxLayout, QWidget)
 from . resources_rc import *
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1280, 721)
-        MainWindow.setMinimumSize(QSize(1280, 720))
+        MainWindow.resize(1280, 720)
+        MainWindow.setMinimumSize(QSize(80, 0))
         self.styleSheet = QWidget(MainWindow)
         self.styleSheet.setObjectName(u"styleSheet")
         font = QFont()
@@ -558,10 +558,8 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "")
-        self.appMargins = QVBoxLayout(self.styleSheet)
-        self.appMargins.setSpacing(0)
-        self.appMargins.setObjectName(u"appMargins")
-        self.appMargins.setContentsMargins(10, 10, 10, 10)
+        self.verticalLayout_31 = QVBoxLayout(self.styleSheet)
+        self.verticalLayout_31.setObjectName(u"verticalLayout_31")
         self.bgApp = QFrame(self.styleSheet)
         self.bgApp.setObjectName(u"bgApp")
         self.bgApp.setStyleSheet(u"")
@@ -700,6 +698,30 @@ class Ui_MainWindow(object):
         self.btn_add_user.setStyleSheet(u"background-image: url(:/icons/images/icons/cil-user.png);")
 
         self.verticalLayout_8.addWidget(self.btn_add_user)
+
+        self.btn_test = QPushButton(self.topMenu)
+        self.btn_test.setObjectName(u"btn_test")
+        sizePolicy.setHeightForWidth(self.btn_test.sizePolicy().hasHeightForWidth())
+        self.btn_test.setSizePolicy(sizePolicy)
+        self.btn_test.setMinimumSize(QSize(0, 45))
+        self.btn_test.setFont(font)
+        self.btn_test.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.btn_test.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        self.btn_test.setStyleSheet(u"background-image: url(:/icons/images/icons/cil-briefcase.png);")
+
+        self.verticalLayout_8.addWidget(self.btn_test)
+
+        self.btn_curators = QPushButton(self.topMenu)
+        self.btn_curators.setObjectName(u"btn_curators")
+        sizePolicy.setHeightForWidth(self.btn_curators.sizePolicy().hasHeightForWidth())
+        self.btn_curators.setSizePolicy(sizePolicy)
+        self.btn_curators.setMinimumSize(QSize(0, 45))
+        self.btn_curators.setFont(font)
+        self.btn_curators.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.btn_curators.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        self.btn_curators.setStyleSheet(u"background-image: url(:/icons/images/icons/cil-briefcase.png);")
+
+        self.verticalLayout_8.addWidget(self.btn_curators)
 
 
         self.verticalMenuLayout.addWidget(self.topMenu, 0, Qt.AlignmentFlag.AlignTop)
@@ -1007,6 +1029,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_15.setContentsMargins(10, 10, 10, 10)
         self.stackedWidget = QStackedWidget(self.pagesContainer)
         self.stackedWidget.setObjectName(u"stackedWidget")
+        self.stackedWidget.setMinimumSize(QSize(80, 0))
         self.stackedWidget.setStyleSheet(u"background: transparent;")
         self.adduser_page = QWidget()
         self.adduser_page.setObjectName(u"adduser_page")
@@ -1168,9 +1191,75 @@ class Ui_MainWindow(object):
         self.home.setObjectName(u"home")
         self.home.setStyleSheet(u"background-position: center;\n"
 "background-repeat: no-repeat;")
+        self.verticalLayout_24 = QVBoxLayout(self.home)
+        self.verticalLayout_24.setObjectName(u"verticalLayout_24")
+        self.gridLayout_4 = QGridLayout()
+        self.gridLayout_4.setObjectName(u"gridLayout_4")
+        self.gridLayout_4.setSizeConstraint(QLayout.SizeConstraint.SetFixedSize)
+        self.gridLayout_4.setContentsMargins(-1, -1, 0, 0)
+        self.invent_search_button = QPushButton(self.home)
+        self.invent_search_button.setObjectName(u"invent_search_button")
+        sizePolicy4 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
+        sizePolicy4.setHorizontalStretch(0)
+        sizePolicy4.setVerticalStretch(0)
+        sizePolicy4.setHeightForWidth(self.invent_search_button.sizePolicy().hasHeightForWidth())
+        self.invent_search_button.setSizePolicy(sizePolicy4)
+        self.invent_search_button.setMinimumSize(QSize(150, 30))
+        self.invent_search_button.setFont(font)
+        self.invent_search_button.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.invent_search_button.setStyleSheet(u"background-color: rgb(52, 59, 72);")
+        icon4 = QIcon()
+        icon4.addFile(u"images/icons/cil-magnifying-glass.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.invent_search_button.setIcon(icon4)
+
+        self.gridLayout_4.addWidget(self.invent_search_button, 0, 3, 1, 1, Qt.AlignmentFlag.AlignLeft)
+
+        self.invent_search = QLineEdit(self.home)
+        self.invent_search.setObjectName(u"invent_search")
+        sizePolicy5 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
+        sizePolicy5.setHorizontalStretch(30)
+        sizePolicy5.setVerticalStretch(0)
+        sizePolicy5.setHeightForWidth(self.invent_search.sizePolicy().hasHeightForWidth())
+        self.invent_search.setSizePolicy(sizePolicy5)
+        self.invent_search.setMinimumSize(QSize(0, 30))
+        self.invent_search.setMaximumSize(QSize(500, 16777215))
+        self.invent_search.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.gridLayout_4.addWidget(self.invent_search, 0, 2, 1, 1)
+
+
+        self.verticalLayout_24.addLayout(self.gridLayout_4)
+
+        self.gridLayout_10 = QGridLayout()
+        self.gridLayout_10.setObjectName(u"gridLayout_10")
+        self.horizontalLayout_6 = QHBoxLayout()
+        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
+        self.invent_fillte_type = QComboBox(self.home)
+        self.invent_fillte_type.addItem("")
+        self.invent_fillte_type.setObjectName(u"invent_fillte_type")
+        self.invent_fillte_type.setEnabled(True)
+        sizePolicy6 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Maximum)
+        sizePolicy6.setHorizontalStretch(0)
+        sizePolicy6.setVerticalStretch(0)
+        sizePolicy6.setHeightForWidth(self.invent_fillte_type.sizePolicy().hasHeightForWidth())
+        self.invent_fillte_type.setSizePolicy(sizePolicy6)
+        self.invent_fillte_type.setMaximumSize(QSize(16777215, 33))
+        self.invent_fillte_type.setFont(font)
+        self.invent_fillte_type.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        self.invent_fillte_type.setAutoFillBackground(False)
+        self.invent_fillte_type.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+        self.invent_fillte_type.setIconSize(QSize(16, 16))
+        self.invent_fillte_type.setFrame(True)
+
+        self.horizontalLayout_6.addWidget(self.invent_fillte_type, 0, Qt.AlignmentFlag.AlignTop)
+
+
+        self.gridLayout_10.addLayout(self.horizontalLayout_6, 0, 1, 1, 1)
+
+        self.verticalLayout_22 = QVBoxLayout()
+        self.verticalLayout_22.setObjectName(u"verticalLayout_22")
         self.invent_table = QTableView(self.home)
         self.invent_table.setObjectName(u"invent_table")
-        self.invent_table.setGeometry(QRect(10, 60, 1001, 361))
         self.invent_table.setStyleSheet(u"            QTableWidget {\n"
 "                background-color: #f8f9fa;\n"
 "                alternate-background-color: #e9ecef;\n"
@@ -1188,82 +1277,114 @@ class Ui_MainWindow(object):
 "            QTableWidget::item {\n"
 "                padding: 5px;\n"
 "            }")
-        self.invent_search_button = QPushButton(self.home)
-        self.invent_search_button.setObjectName(u"invent_search_button")
-        self.invent_search_button.setGeometry(QRect(480, 20, 71, 31))
-        self.invent_search_button.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.verticalLayout_22.addWidget(self.invent_table)
+
+        self.invent_delete_button = QPushButton(self.home)
+        self.invent_delete_button.setObjectName(u"invent_delete_button")
+        sizePolicy4.setHeightForWidth(self.invent_delete_button.sizePolicy().hasHeightForWidth())
+        self.invent_delete_button.setSizePolicy(sizePolicy4)
+        self.invent_delete_button.setMinimumSize(QSize(141, 31))
+        self.invent_delete_button.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.verticalLayout_22.addWidget(self.invent_delete_button, 0, Qt.AlignmentFlag.AlignRight)
+
+        self.gridLayout_8 = QGridLayout()
+        self.gridLayout_8.setObjectName(u"gridLayout_8")
+        self.invent_create_name = QLineEdit(self.home)
+        self.invent_create_name.setObjectName(u"invent_create_name")
+        self.invent_create_name.setMinimumSize(QSize(300, 30))
+        self.invent_create_name.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.gridLayout_8.addWidget(self.invent_create_name, 0, 1, 1, 1)
+
         self.invent_create_curator = QComboBox(self.home)
         self.invent_create_curator.addItem("")
         self.invent_create_curator.addItem("")
-        self.invent_create_curator.addItem("")
         self.invent_create_curator.setObjectName(u"invent_create_curator")
-        self.invent_create_curator.setGeometry(QRect(0, 520, 311, 31))
+        self.invent_create_curator.setMinimumSize(QSize(0, 0))
         self.invent_create_curator.setStyleSheet(u"background-color: rgb(33, 37, 43);")
         self.invent_create_curator.setPlaceholderText(u"")
+
+        self.gridLayout_8.addWidget(self.invent_create_curator, 2, 0, 1, 1)
+
         self.invent_create_room = QComboBox(self.home)
         self.invent_create_room.addItem("")
         self.invent_create_room.addItem("")
         self.invent_create_room.addItem("")
         self.invent_create_room.setObjectName(u"invent_create_room")
-        self.invent_create_room.setGeometry(QRect(0, 560, 311, 31))
         self.invent_create_room.setStyleSheet(u"background-color: rgb(33, 37, 43);")
         self.invent_create_room.setEditable(True)
         self.invent_create_room.setPlaceholderText(u"")
         self.invent_create_room.setDuplicatesEnabled(False)
+
+        self.gridLayout_8.addWidget(self.invent_create_room, 3, 0, 1, 1)
+
         self.invent_create_button = QPushButton(self.home)
         self.invent_create_button.setObjectName(u"invent_create_button")
-        self.invent_create_button.setGeometry(QRect(320, 520, 91, 31))
+        sizePolicy4.setHeightForWidth(self.invent_create_button.sizePolicy().hasHeightForWidth())
+        self.invent_create_button.setSizePolicy(sizePolicy4)
+        self.invent_create_button.setMinimumSize(QSize(141, 31))
         self.invent_create_button.setStyleSheet(u"background-color: rgb(33, 37, 43);")
-        self.invent_delete_button = QPushButton(self.home)
-        self.invent_delete_button.setObjectName(u"invent_delete_button")
-        self.invent_delete_button.setGeometry(QRect(910, 430, 91, 31))
-        self.invent_delete_button.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.gridLayout_8.addWidget(self.invent_create_button, 2, 1, 1, 1)
+
         self.invent_create_id = QLineEdit(self.home)
         self.invent_create_id.setObjectName(u"invent_create_id")
-        self.invent_create_id.setGeometry(QRect(0, 440, 221, 31))
         self.invent_create_id.setMinimumSize(QSize(0, 30))
         self.invent_create_id.setStyleSheet(u"background-color: rgb(33, 37, 43);")
-        self.invent_search = QLineEdit(self.home)
-        self.invent_search.setObjectName(u"invent_search")
-        self.invent_search.setGeometry(QRect(10, 20, 451, 31))
-        self.invent_search.setMinimumSize(QSize(0, 30))
-        self.invent_search.setStyleSheet(u"background-color: rgb(33, 37, 43);")
-        self.invent_create_name = QLineEdit(self.home)
-        self.invent_create_name.setObjectName(u"invent_create_name")
-        self.invent_create_name.setGeometry(QRect(230, 440, 221, 31))
-        self.invent_create_name.setMinimumSize(QSize(0, 30))
-        self.invent_create_name.setStyleSheet(u"background-color: rgb(33, 37, 43);")
-        self.invent_fillte_type = QComboBox(self.home)
-        self.invent_fillte_type.addItem("")
-        self.invent_fillte_type.setObjectName(u"invent_fillte_type")
-        self.invent_fillte_type.setGeometry(QRect(1020, 60, 151, 31))
-        self.invent_fillte_type.setFont(font)
-        self.invent_fillte_type.setAutoFillBackground(False)
-        self.invent_fillte_type.setStyleSheet(u"background-color: rgb(33, 37, 43);")
-        self.invent_fillte_type.setIconSize(QSize(16, 16))
-        self.invent_fillte_type.setFrame(True)
+
+        self.gridLayout_8.addWidget(self.invent_create_id, 0, 0, 1, 1)
+
+        self.gridLayout_9 = QGridLayout()
+        self.gridLayout_9.setObjectName(u"gridLayout_9")
         self.invent_create_sost = QComboBox(self.home)
         self.invent_create_sost.addItem("")
         self.invent_create_sost.addItem("")
         self.invent_create_sost.addItem("")
         self.invent_create_sost.addItem("")
         self.invent_create_sost.setObjectName(u"invent_create_sost")
-        self.invent_create_sost.setGeometry(QRect(200, 480, 111, 31))
+        sizePolicy7 = QSizePolicy(QSizePolicy.Policy.Maximum, QSizePolicy.Policy.Fixed)
+        sizePolicy7.setHorizontalStretch(0)
+        sizePolicy7.setVerticalStretch(0)
+        sizePolicy7.setHeightForWidth(self.invent_create_sost.sizePolicy().hasHeightForWidth())
+        self.invent_create_sost.setSizePolicy(sizePolicy7)
         self.invent_create_sost.setFont(font)
         self.invent_create_sost.setAutoFillBackground(False)
         self.invent_create_sost.setStyleSheet(u"background-color: rgb(33, 37, 43);")
         self.invent_create_sost.setIconSize(QSize(16, 16))
         self.invent_create_sost.setFrame(True)
+
+        self.gridLayout_9.addWidget(self.invent_create_sost, 0, 1, 1, 1)
+
         self.invent_create_type = QComboBox(self.home)
         self.invent_create_type.addItem("")
         self.invent_create_type.setObjectName(u"invent_create_type")
-        self.invent_create_type.setGeometry(QRect(0, 480, 191, 31))
+        sizePolicy6.setHeightForWidth(self.invent_create_type.sizePolicy().hasHeightForWidth())
+        self.invent_create_type.setSizePolicy(sizePolicy6)
+        self.invent_create_type.setMinimumSize(QSize(100, 0))
+        self.invent_create_type.setMaximumSize(QSize(1000, 16777215))
         self.invent_create_type.setFont(font)
         self.invent_create_type.setAutoFillBackground(False)
         self.invent_create_type.setStyleSheet(u"background-color: rgb(33, 37, 43);")
         self.invent_create_type.setEditable(True)
         self.invent_create_type.setIconSize(QSize(16, 16))
         self.invent_create_type.setFrame(True)
+
+        self.gridLayout_9.addWidget(self.invent_create_type, 0, 0, 1, 1)
+
+
+        self.gridLayout_8.addLayout(self.gridLayout_9, 1, 0, 1, 1)
+
+
+        self.verticalLayout_22.addLayout(self.gridLayout_8)
+
+
+        self.gridLayout_10.addLayout(self.verticalLayout_22, 0, 0, 1, 1)
+
+
+        self.verticalLayout_24.addLayout(self.gridLayout_10)
+
         self.stackedWidget.addWidget(self.home)
         self.widgets = QWidget()
         self.widgets.setObjectName(u"widgets")
@@ -1329,9 +1450,9 @@ class Ui_MainWindow(object):
         self.pushButton.setFont(font)
         self.pushButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.pushButton.setStyleSheet(u"background-color: rgb(52, 59, 72);")
-        icon4 = QIcon()
-        icon4.addFile(u":/icons/images/icons/cil-folder-open.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.pushButton.setIcon(icon4)
+        icon5 = QIcon()
+        icon5.addFile(u":/icons/images/icons/cil-folder-open.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.pushButton.setIcon(icon5)
 
         self.gridLayout.addWidget(self.pushButton, 0, 1, 1, 1)
 
@@ -1406,7 +1527,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 218, 218))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 352, 218))
         self.scrollAreaWidgetContents.setStyleSheet(u" QScrollBar:vertical {\n"
 "	border: none;\n"
 "    background: rgb(52, 59, 72);\n"
@@ -1454,9 +1575,9 @@ class Ui_MainWindow(object):
         self.commandLinkButton.setObjectName(u"commandLinkButton")
         self.commandLinkButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.commandLinkButton.setStyleSheet(u"")
-        icon5 = QIcon()
-        icon5.addFile(u":/icons/images/icons/cil-link.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.commandLinkButton.setIcon(icon5)
+        icon6 = QIcon()
+        icon6.addFile(u":/icons/images/icons/cil-link.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.commandLinkButton.setIcon(icon6)
 
         self.gridLayout_2.addWidget(self.commandLinkButton, 1, 6, 1, 1)
 
@@ -1598,6 +1719,120 @@ class Ui_MainWindow(object):
         self.verticalLayout.addWidget(self.row_3)
 
         self.stackedWidget.addWidget(self.widgets)
+        self.curators_page = QWidget()
+        self.curators_page.setObjectName(u"curators_page")
+        sizePolicy8 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
+        sizePolicy8.setHorizontalStretch(100)
+        sizePolicy8.setVerticalStretch(0)
+        sizePolicy8.setHeightForWidth(self.curators_page.sizePolicy().hasHeightForWidth())
+        self.curators_page.setSizePolicy(sizePolicy8)
+        self.curators_page.setMinimumSize(QSize(0, 0))
+        self.curators_page.setMaximumSize(QSize(16777215, 16777215))
+        self.verticalLayout_21 = QVBoxLayout(self.curators_page)
+        self.verticalLayout_21.setObjectName(u"verticalLayout_21")
+        self.gridLayout_31 = QGridLayout()
+        self.gridLayout_31.setObjectName(u"gridLayout_31")
+        self.gridLayout_31.setSizeConstraint(QLayout.SizeConstraint.SetFixedSize)
+        self.gridLayout_31.setContentsMargins(-1, -1, 0, 0)
+        self.curators_search_button = QPushButton(self.curators_page)
+        self.curators_search_button.setObjectName(u"curators_search_button")
+        sizePolicy4.setHeightForWidth(self.curators_search_button.sizePolicy().hasHeightForWidth())
+        self.curators_search_button.setSizePolicy(sizePolicy4)
+        self.curators_search_button.setMinimumSize(QSize(150, 30))
+        self.curators_search_button.setFont(font)
+        self.curators_search_button.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.curators_search_button.setStyleSheet(u"background-color: rgb(52, 59, 72);")
+        self.curators_search_button.setIcon(icon4)
+
+        self.gridLayout_31.addWidget(self.curators_search_button, 0, 3, 1, 1, Qt.AlignmentFlag.AlignLeft)
+
+        self.curators_search = QLineEdit(self.curators_page)
+        self.curators_search.setObjectName(u"curators_search")
+        sizePolicy5.setHeightForWidth(self.curators_search.sizePolicy().hasHeightForWidth())
+        self.curators_search.setSizePolicy(sizePolicy5)
+        self.curators_search.setMinimumSize(QSize(0, 30))
+        self.curators_search.setMaximumSize(QSize(500, 16777215))
+        self.curators_search.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.gridLayout_31.addWidget(self.curators_search, 0, 2, 1, 1)
+
+
+        self.verticalLayout_21.addLayout(self.gridLayout_31)
+
+        self.curators_table = QTableView(self.curators_page)
+        self.curators_table.setObjectName(u"curators_table")
+        self.curators_table.setStyleSheet(u"            QTableWidget {\n"
+"                background-color: #f8f9fa;\n"
+"                alternate-background-color: #e9ecef;\n"
+"                gridline-color: #dee2e6;\n"
+"                border: 1px solid #ced4da;\n"
+"                border-radius: 5px;\n"
+"            }\n"
+"            QHeaderView::section {\n"
+"                background-color: #343a40;\n"
+"                color: white;\n"
+"                padding: 5px;\n"
+"                border: 1px solid #495057;\n"
+"                font-weight: bold;\n"
+"            }\n"
+"            QTableWidget::item {\n"
+"                padding: 5px;\n"
+"            }")
+
+        self.verticalLayout_21.addWidget(self.curators_table)
+
+        self.gridLayout_29 = QGridLayout()
+        self.gridLayout_29.setObjectName(u"gridLayout_29")
+        self.curators_name = QLineEdit(self.curators_page)
+        self.curators_name.setObjectName(u"curators_name")
+        self.curators_name.setMinimumSize(QSize(0, 30))
+        self.curators_name.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.gridLayout_29.addWidget(self.curators_name, 1, 0, 1, 1)
+
+        self.curators_surname = QLineEdit(self.curators_page)
+        self.curators_surname.setObjectName(u"curators_surname")
+        self.curators_surname.setMinimumSize(QSize(0, 30))
+        self.curators_surname.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.gridLayout_29.addWidget(self.curators_surname, 0, 0, 1, 1)
+
+        self.curators_create_button = QPushButton(self.curators_page)
+        self.curators_create_button.setObjectName(u"curators_create_button")
+        sizePolicy4.setHeightForWidth(self.curators_create_button.sizePolicy().hasHeightForWidth())
+        self.curators_create_button.setSizePolicy(sizePolicy4)
+        self.curators_create_button.setMinimumSize(QSize(141, 31))
+        self.curators_create_button.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.gridLayout_29.addWidget(self.curators_create_button, 1, 1, 1, 1)
+
+        self.curators_otchestvo = QLineEdit(self.curators_page)
+        self.curators_otchestvo.setObjectName(u"curators_otchestvo")
+        self.curators_otchestvo.setMinimumSize(QSize(0, 30))
+        self.curators_otchestvo.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.gridLayout_29.addWidget(self.curators_otchestvo, 2, 0, 1, 1)
+
+        self.curators_phone = QLineEdit(self.curators_page)
+        self.curators_phone.setObjectName(u"curators_phone")
+        self.curators_phone.setMinimumSize(QSize(300, 30))
+        self.curators_phone.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.gridLayout_29.addWidget(self.curators_phone, 3, 0, 1, 1)
+
+        self.curators_delete_button = QPushButton(self.curators_page)
+        self.curators_delete_button.setObjectName(u"curators_delete_button")
+        sizePolicy4.setHeightForWidth(self.curators_delete_button.sizePolicy().hasHeightForWidth())
+        self.curators_delete_button.setSizePolicy(sizePolicy4)
+        self.curators_delete_button.setMinimumSize(QSize(141, 31))
+        self.curators_delete_button.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.gridLayout_29.addWidget(self.curators_delete_button, 0, 1, 1, 1)
+
+
+        self.verticalLayout_21.addLayout(self.gridLayout_29)
+
+        self.stackedWidget.addWidget(self.curators_page)
         self.logs_page = QWidget()
         self.logs_page.setObjectName(u"logs_page")
         self.verticalLayout_20 = QVBoxLayout(self.logs_page)
@@ -1725,7 +1960,7 @@ class Ui_MainWindow(object):
         self.appLayout.addWidget(self.contentBox)
 
 
-        self.appMargins.addWidget(self.bgApp)
+        self.verticalLayout_31.addWidget(self.bgApp)
 
         MainWindow.setCentralWidget(self.styleSheet)
 
@@ -1745,6 +1980,8 @@ class Ui_MainWindow(object):
         self.btn_home.setText(QCoreApplication.translate("MainWindow", u"\u0413\u043b\u0430\u0432\u043d\u0430\u044f", None))
         self.btn_logs.setText(QCoreApplication.translate("MainWindow", u"\u0416\u0443\u0440\u043d\u0430\u043b \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0439", None))
         self.btn_add_user.setText(QCoreApplication.translate("MainWindow", u"\u0423\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u0435 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f\u043c\u0438", None))
+        self.btn_test.setText(QCoreApplication.translate("MainWindow", u"\u0413\u043b\u0430\u0432\u043d\u0430\u044f", None))
+        self.btn_curators.setText(QCoreApplication.translate("MainWindow", u"\u0413\u043b\u0430\u0432\u043d\u0430\u044f", None))
         self.extraLabel.setText(QCoreApplication.translate("MainWindow", u"Left Box", None))
 #if QT_CONFIG(tooltip)
         self.extraCloseColumnBtn.setToolTip(QCoreApplication.translate("MainWindow", u"Close left box", None))
@@ -1852,24 +2089,23 @@ class Ui_MainWindow(object):
         self.login.setText(QCoreApplication.translate("MainWindow", u"\u041b\u043e\u0433\u0438\u043d", None))
         self.password.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u043e\u043b\u044c", None))
         self.invent_search_button.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0438\u0441\u043a", None))
-        self.invent_create_curator.setItemText(0, QCoreApplication.translate("MainWindow", u"aaa", None))
-        self.invent_create_curator.setItemText(1, QCoreApplication.translate("MainWindow", u"\u041e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u044b\u0439", None))
-        self.invent_create_curator.setItemText(2, QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
+        self.invent_search.setText("")
+        self.invent_search.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0438\u0441\u043a \u043f\u043e \u0431\u0430\u0437\u0435", None))
+        self.invent_fillte_type.setItemText(0, QCoreApplication.translate("MainWindow", u"\u0424\u0438\u043b\u044c\u0442\u0440 \u043f\u043e \u0442\u0438\u043f\u0443", None))
+
+        self.invent_delete_button.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c", None))
+        self.invent_create_name.setText("")
+        self.invent_create_name.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435", None))
+        self.invent_create_curator.setItemText(0, QCoreApplication.translate("MainWindow", u"\u041e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043d\u043d\u044b\u0439", None))
+        self.invent_create_curator.setItemText(1, QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
 
         self.invent_create_room.setItemText(0, QCoreApplication.translate("MainWindow", u"\u041f\u043e\u043c\u0435\u0449\u0435\u043d\u0438\u0435", None))
         self.invent_create_room.setItemText(1, QCoreApplication.translate("MainWindow", u"\u041a\u0430\u0431\u0438\u043d\u0435\u0442 123", None))
         self.invent_create_room.setItemText(2, QCoreApplication.translate("MainWindow", u"\u041a\u0430\u0431\u0438\u043d\u0435\u0442 321", None))
 
         self.invent_create_button.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
-        self.invent_delete_button.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c", None))
         self.invent_create_id.setText("")
         self.invent_create_id.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u0438\u043d\u0432\u0435\u043d\u0442 \u043d\u043e\u043c\u0435\u0440 \u0438\u043b\u0438 \u0430\u0432\u0442\u043e\u0433\u0435\u043d\u0435\u0440\u0430\u0446\u0438\u044f", None))
-        self.invent_search.setText("")
-        self.invent_search.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u043f\u043e\u0438\u0441\u043a \u043f\u043e \u0431\u0430\u0437\u0435", None))
-        self.invent_create_name.setText("")
-        self.invent_create_name.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435", None))
-        self.invent_fillte_type.setItemText(0, QCoreApplication.translate("MainWindow", u"\u0424\u0438\u043b\u044c\u0442\u0440 \u043f\u043e \u0442\u0438\u043f\u0443", None))
-
         self.invent_create_sost.setItemText(0, QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u0435", None))
         self.invent_create_sost.setItemText(1, QCoreApplication.translate("MainWindow", u"\u041d\u0430 \u0441\u043a\u043b\u0430\u0434\u0435", None))
         self.invent_create_sost.setItemText(2, QCoreApplication.translate("MainWindow", u"\u0421\u043b\u043e\u043c\u0430\u043d", None))
@@ -1943,6 +2179,19 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem47.setText(QCoreApplication.translate("MainWindow", u"Line", None));
         self.tableWidget.setSortingEnabled(__sortingEnabled1)
 
+        self.curators_search_button.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0438\u0441\u043a", None))
+        self.curators_search.setText("")
+        self.curators_search.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0438\u0441\u043a \u043f\u043e \u0431\u0430\u0437\u0435", None))
+        self.curators_name.setText("")
+        self.curators_name.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u0418\u043c\u044f", None))
+        self.curators_surname.setText("")
+        self.curators_surname.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u0424\u0430\u043c\u0438\u043b\u0438\u044f", None))
+        self.curators_create_button.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
+        self.curators_otchestvo.setText("")
+        self.curators_otchestvo.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041e\u0442\u0447\u0435\u0441\u0442\u0432\u043e", None))
+        self.curators_phone.setText("")
+        self.curators_phone.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u043c\u0435\u0440 \u0442\u0435\u043b\u0435\u0444\u043e\u043d\u0430", None))
+        self.curators_delete_button.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c", None))
         self.logs.setText("")
         self.btn_logout.setText(QCoreApplication.translate("MainWindow", u"\u0412\u044b\u0445\u043e\u0434", None))
         self.creditsLabel.setText(QCoreApplication.translate("MainWindow", u"By: Nerykery", None))
